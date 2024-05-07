@@ -24,7 +24,7 @@ const barColors = {
 };
 
 
-export async function exportToGraph(name: string, average: Record<string, number>) {
+export async function exportToGraph(name: string, average: Record<string, number>, unit = 'ms') {
   const numMethods = Object.keys(average).length;
   for (const theme of themes) {
     const view = new vega.View(
@@ -56,7 +56,7 @@ export async function exportToGraph(name: string, average: Record<string, number
               {
                 type: 'formula',
                 as: 'time_s',
-                expr: 'format(datum.time, ".2f") + "ms"',
+                expr: `format(datum.time, ".2f") + "${unit}"`,
               },
             ],
           },

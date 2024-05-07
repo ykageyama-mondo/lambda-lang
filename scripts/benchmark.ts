@@ -36,7 +36,7 @@ async function main() {
 
   }
 
-  const fibRecord = Object.entries(results.fibonacci).reduce((agg, [language, metrics]) => {
+  const durationFibRecord = Object.entries(results.fibonacci).reduce((agg, [language, metrics]) => {
     agg[language] = metrics.duration;
     return agg;
   }, {} as Record<string, any>);
@@ -46,7 +46,14 @@ async function main() {
     return agg;
   }, {} as Record<string, any>);
 
-  await exportToGraph('Fibonacci Duration Benchmark', fibRecord);
+  const memUsageFibRecord = Object.entries(results.fibonacci).reduce((agg, [language, metrics]) => {
+    agg[language] = metrics.maxMemoryUsed;
+    return agg;
+  }, {} as Record<string, any>);
+
+
+  await exportToGraph('Fibonacci Duration Benchmark', durationFibRecord);
+  await exportToGraph('Fibonacci Memory Usage Benchmark', memUsageFibRecord, 'MB');
   if (Object.values(coldStartFibRecord).every((v) => v)) {
     await exportToGraph('Fibonacci Cold Start Benchmark', coldStartFibRecord);
   }

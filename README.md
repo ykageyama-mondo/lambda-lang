@@ -2,7 +2,7 @@
 
 ## Fibonacci benchmark
 
-### Cold start
+### Cold start duration
 
 <p align="center">
   <picture>
@@ -12,13 +12,23 @@
   </picture>
 </p>
 
-### Duration (cold lambda with no v8 optimizations)
+### Execution duration (cold lambda with no v8 optimizations)
 
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="./assets/Fibonacci Duration Benchmark-dark.svg">
     <source media="(prefers-color-scheme: light)" srcset="./assets/Fibonacci Duration Benchmark-light.svg">
     <img alt="Bar chart with benchmark results" src="/assets/Fibonacci Duration Benchmark-light.svg">
+  </picture>
+</p>
+
+### Execution duration (cold lambda with no v8 optimizations)
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/Fibonacci Memory Usage Benchmark-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/Fibonacci Memory Usage Benchmark-light.svg">
+    <img alt="Bar chart with benchmark results" src="/assets/Fibonacci Memory Usage Benchmark-light.svg">
   </picture>
 </p>
 
