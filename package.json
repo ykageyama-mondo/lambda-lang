@@ -1,0 +1,41 @@
+{
+  "name": "lambda-lang",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "synth": "cdk synth",
+    "deploy": "cdk deploy --method direct --require-approval never",
+    "hotswap": "cdk deploy --method direct --hotswap --require-approval never",
+    "benchmark": "tsx scripts/benchmark.ts",
+    "prepare": "tsx scripts/prepare.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@shopify/eslint-plugin": "^44.0.0",
+    "@types/node": "^20.12.10",
+    "@typescript-eslint/eslint-plugin": "^6",
+    "@typescript-eslint/parser": "^6",
+    "aws-cdk": "^2.140.0",
+    "esbuild": "^0.20.2",
+    "eslint": "^8.57.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-check-file": "^2.8.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-no-only-tests": "^3.1.0",
+    "eslint-plugin-node": "^11.1.0",
+    "tsx": "^4.9.3",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-lambda-go-alpha": "2.140.0-alpha.0",
+    "@aws-sdk/client-cloudformation": "^3.569.0",
+    "@aws-sdk/client-cloudwatch-logs": "^3.569.0",
+    "@aws-sdk/client-lambda": "^3.569.0",
+    "@cdklabs/aws-lambda-rust": "^0.0.4",
+    "aws-cdk-lib": "^2.140.0",
+    "constructs": "^10.3.0"
+  }
+}
