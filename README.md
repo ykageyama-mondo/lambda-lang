@@ -61,3 +61,12 @@ pnpm run benchmark
 ```bash
 pnpm run benchmark:cold
 ```
+
+### TODO
+
+- [ ] More iterations
+- [ ] Warm lambda comparison
+- [ ] Logged time vs real time
+- [ ] Timeseries of benchmarks against iteration count from cold
+- [ ] More iterations for cold start
+- [ ] More languages
