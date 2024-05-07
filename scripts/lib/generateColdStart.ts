@@ -2,7 +2,7 @@ import fs from 'fs';
 
 const goTemplate = (rand: number) => {
   return `
-package main
+package lib
 
 import (
   "fmt"
@@ -30,7 +30,7 @@ export function generateColdStart() {
   const rust = rustTemplate(num);
 
   fs.writeFileSync('src/go/lib/coldstart.go', go);
-  fs.writeFileSync('src/node/coldStart.ts', node);
-  fs.writeFileSync('src/rust/fibonacci/src/coldStart.rs', rust);
+  fs.writeFileSync('src/node/coldstart.ts', node);
+  fs.writeFileSync('src/rust/fibonacci/src/coldstart.rs', rust);
 
 }

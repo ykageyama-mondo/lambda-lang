@@ -22,11 +22,13 @@ async function main() {
   const results: Record<string, any> = {};
 
   for (const lambda of fibonacciLambdas) {
+    console.log(`Invoking ${lambda.language} ${lambda.type}`);
     const output = await invokeLambda(lambda.arn, fixtures.fibonacci.input);
-    const response = JSON.parse(Buffer.from(output.Payload!).toString());
+    const data = Buffer.from(output.Payload!).toString();
+    const response = BigInt(data.replace(/"/g, ''));
     assert(response === fixtures.fibonacci.expected, `Expected ${fixtures.fibonacci.expected}, got ${response}`);
 
-    const metrics = parseLogs(output.LogResult);
+    const metrics = parseLogs(output.LogResult!);
 
     results[lambda.language] = {
       [lambda.type]: metrics,

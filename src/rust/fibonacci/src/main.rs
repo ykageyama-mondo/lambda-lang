@@ -5,18 +5,25 @@ use serde::Deserialize;
 
 #[derive(Deserialize)]
 struct FibonacciInput {
-    n: u32,
+    n: u128,
 }
 
-fn fibonacci(n: u32) -> u32 {
-    match n {
-        0 => 0,
-        1 => 1,
-        _ => fibonacci(n - 1) + fibonacci(n - 2),
+fn fibonacci(n: u128) -> u128 {
+    if (n == 0) || (n == 1) {
+        return n;
     }
+    let mut sum = 0;
+    let mut prev= 0;
+    let mut curr = 1;
+    for _ in 1..n {
+        sum = prev + curr;
+        prev = curr;
+        curr = sum;
+    }
+    sum
 }
 
-async fn function_handler(event: LambdaEvent<FibonacciInput>) -> Result<u32, Error> {
+async fn function_handler(event: LambdaEvent<FibonacciInput>) -> Result<u128, Error> {
     coldstart::cold_start();
 
     let n = event.payload.n;

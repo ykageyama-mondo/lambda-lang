@@ -8,7 +8,8 @@
     "deploy": "cdk deploy --method direct --require-approval never",
     "hotswap": "cdk deploy --method direct --hotswap --require-approval never",
     "benchmark": "tsx scripts/benchmark.ts",
-    "prepare": "tsx scripts/prepare.ts"
+    "prepare": "tsx scripts/prepare.ts",
+    "benchmark:cold": "pnpm run prepare && pnpm run hotswap && pnpm run benchmark"
   },
   "keywords": [],
   "author": "",
