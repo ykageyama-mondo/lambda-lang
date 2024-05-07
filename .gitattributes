@@ -1,2 +1,3 @@
 /src/**/coldstart.* linguist-generated
 /src/**/coldStart.* linguist-generated
+/assets/* linguist-generated
