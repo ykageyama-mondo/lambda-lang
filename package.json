@@ -37,6 +37,7 @@
     "@aws-sdk/client-lambda": "^3.569.0",
     "@cdklabs/aws-lambda-rust": "^0.0.4",
     "aws-cdk-lib": "^2.140.0",
-    "constructs": "^10.3.0"
+    "constructs": "^10.3.0",
+    "vega": "^5.28.0"
   }
 }

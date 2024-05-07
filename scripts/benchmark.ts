@@ -1,9 +1,9 @@
 import assert from 'assert';
 
-
 import {fixtures} from './fixtures';
 import {invokeLambda} from './lib/aws/lambda';
 import {getLambdas} from './lib/exports';
+import {exportToGraph} from './lib/graph';
 import {parseLogs} from './lib/logs';
 
 async function main() {
@@ -19,7 +19,7 @@ async function main() {
 
   const fibonacciLambdas = lambdasGroupedByType.fibonacci;
 
-  const results: Record<string, any> = {};
+  const results: Record<string, Record<string, ReturnType<typeof parseLogs>>> = {};
 
   for (const lambda of fibonacciLambdas) {
     console.log(`Invoking ${lambda.language} ${lambda.type}`);
@@ -29,13 +29,27 @@ async function main() {
     assert(response === fixtures.fibonacci.expected, `Expected ${fixtures.fibonacci.expected}, got ${response}`);
 
     const metrics = parseLogs(output.LogResult!);
-
-    results[lambda.language] = {
-      [lambda.type]: metrics,
-    };
+    if (!results[lambda.type]) {
+      results[lambda.type] = {};
+    }
+    results[lambda.type][lambda.language] = metrics;
 
   }
 
+  const fibRecord = Object.entries(results.fibonacci).reduce((agg, [language, metrics]) => {
+    agg[language] = metrics.duration;
+    return agg;
+  }, {} as Record<string, any>);
+
+  const coldStartFibRecord = Object.entries(results.fibonacci).reduce((agg, [language, metrics]) => {
+    agg[language] = metrics.initDuration;
+    return agg;
+  }, {} as Record<string, any>);
+
+  await exportToGraph('Fibonacci Duration Benchmark', fibRecord);
+  if (Object.values(coldStartFibRecord).every((v) => v)) {
+    await exportToGraph('Fibonacci Cold Start Benchmark', coldStartFibRecord);
+  }
   console.log(JSON.stringify(results, null, 2));
 }
 
