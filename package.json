@@ -9,6 +9,7 @@
     "hotswap": "cdk deploy --method direct --hotswap --require-approval never",
     "benchmark": "tsx scripts/benchmark.ts",
     "prepare": "tsx scripts/prepare.ts",
+    "stats": "tsx scripts/stats.ts",
     "benchmark:cold": "pnpm run prepare && pnpm run hotswap && pnpm run benchmark"
   },
   "keywords": [],
@@ -16,6 +17,7 @@
   "license": "ISC",
   "devDependencies": {
     "@shopify/eslint-plugin": "^44.0.0",
+    "@types/d3-array": "^3.2.1",
     "@types/node": "^20.12.10",
     "@typescript-eslint/eslint-plugin": "^6",
     "@typescript-eslint/parser": "^6",
@@ -38,6 +40,7 @@
     "@cdklabs/aws-lambda-rust": "^0.0.4",
     "aws-cdk-lib": "^2.140.0",
     "constructs": "^10.3.0",
+    "d3-array": "^3.2.4",
     "vega": "^5.28.0"
   }
 }

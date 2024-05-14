@@ -2,7 +2,7 @@
 
 ## Fibonacci benchmark
 
-### Cold start duration
+### Cold start duration (single iteration)
 
 <p align="center">
   <picture>
@@ -12,7 +12,7 @@
   </picture>
 </p>
 
-### Execution duration (cold lambda with no v8 optimizations)
+### Average execution duration (1000 iterations on warm lambdas)
 
 <p align="center">
   <picture>
@@ -22,7 +22,7 @@
   </picture>
 </p>
 
-### Execution duration (cold lambda with no v8 optimizations)
+### Average memory usage (1000 iterations on warm lambdas)
 
 <p align="center">
   <picture>

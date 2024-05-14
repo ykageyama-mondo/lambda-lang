@@ -1,8 +1,8 @@
 import {GoFunction} from '@aws-cdk/aws-lambda-go-alpha';
 import {RustFunction} from '@cdklabs/aws-lambda-rust';
 import type {StackProps} from 'aws-cdk-lib';
-import {Duration, Stack} from 'aws-cdk-lib';
-import {Runtime} from 'aws-cdk-lib/aws-lambda';
+import {Duration, Stack, BundlingOutput} from 'aws-cdk-lib';
+import {Code, Runtime, Function} from 'aws-cdk-lib/aws-lambda';
 import {NodejsFunction} from 'aws-cdk-lib/aws-lambda-nodejs';
 import type {Construct} from 'constructs';
 
@@ -31,6 +31,27 @@ export class LambdaLangStack extends Stack {
       timeout: Duration.seconds(30),
     });
 
+
+    const csharpLambda = new Function(this, 'CSharpLambda', {
+      runtime: Runtime.DOTNET_8,
+      handler: 'Fibonacci::FibonacciLambda.Function::FunctionHandler',
+      code: Code.fromAsset('src/csharp/Fibonacci', {
+        bundling: {
+          image: Runtime.DOTNET_8.bundlingImage,
+          user: 'root',
+          outputType: BundlingOutput.ARCHIVED,
+          command: [
+            '/bin/sh',
+            '-c',
+            ' dotnet tool install -g Amazon.Lambda.Tools' +
+            ' && dotnet build' +
+            ' && dotnet lambda package --output-package /asset-output/function.zip',
+          ],
+        },
+      }),
+      timeout: Duration.seconds(30),
+    });
+
     this.exportValue(nodeLambda.functionArn, {
       name: 'Node:fibonacci:LambdaArn',
     });
@@ -39,6 +60,9 @@ export class LambdaLangStack extends Stack {
     });
     this.exportValue(rustLambda.functionArn, {
       name: 'Rust:fibonacci:LambdaArn',
+    });
+    this.exportValue(csharpLambda.functionArn, {
+      name: 'CSharp:fibonacci:LambdaArn',
     });
   }
 }

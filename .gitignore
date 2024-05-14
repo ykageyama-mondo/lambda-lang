@@ -1,3 +1,6 @@
 node_modules
 cdk.out
 src/rust/target
+src/csharp/**/bin
+src/csharp/**/obj
+output

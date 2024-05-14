@@ -26,6 +26,9 @@ dependencies:
   constructs:
     specifier: ^10.3.0
     version: 10.3.0
+  d3-array:
+    specifier: ^3.2.4
+    version: 3.2.4
   vega:
     specifier: ^5.28.0
     version: 5.28.0
@@ -34,6 +37,9 @@ devDependencies:
   '@shopify/eslint-plugin':
     specifier: ^44.0.0
     version: 44.0.0(@babel/core@7.24.5)(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)(prettier@3.2.5)(typescript@5.4.5)
+  '@types/d3-array':
+    specifier: ^3.2.1
+    version: 3.2.1
   '@types/node':
     specifier: ^20.12.10
     version: 20.12.10
@@ -1719,6 +1725,10 @@ packages:
       '@smithy/types': 2.12.0
       tslib: 2.6.2
     dev: false
+
+  /@types/d3-array@3.2.1:
+    resolution: {integrity: sha512-Y2Jn2idRrLzUfAKV2LyRImR+y4oa2AntrgID95SHJxuMUrkNXmanDSed71sRNZysveJVt1hLLemQZIady0FpEg==}
+    dev: true
 
   /@types/estree@1.0.5:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
