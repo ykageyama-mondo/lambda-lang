@@ -9,7 +9,7 @@ namespace FibonacciLambda;
 
 public class Input
 {
-    public uint n { get; set; }
+    public ulong n { get; set; }
 }
 
 public class Function
@@ -21,20 +21,22 @@ public class Function
     /// <param name="input"></param>
     /// <param name="context"></param>
     /// <returns></returns>
-    public uint FunctionHandler(Input input, ILambdaContext context)
+    public ulong FunctionHandler(Input input, ILambdaContext context)
     {
-        return Fibonacci(input.n);
+        var result = Fibonacci(input.n);
+        Console.WriteLine($"Fibonacci({input.n}) = {result}");
+        return result;
     }
 
-    public uint Fibonacci(uint n)
+    public ulong Fibonacci(ulong n)
     {
         if (n == 0 || n == 1) {
             return n;
         }
-        uint sum = 0;
-        uint prev = 0;
-        uint curr = 1;
-        for (var i = 1; i < n; i++) {
+        ulong sum = 0;
+        ulong prev = 0;
+        ulong curr = 1;
+        for (ulong i = 1; i < n; i++) {
             sum = prev + curr;
             prev = curr;
             curr = sum;
